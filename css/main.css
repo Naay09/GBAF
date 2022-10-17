@@ -1,0 +1,468 @@
+/*CSS GBAF */
+
+/*CSS Global*/
+@font-face{ 
+	font-family: 'Open Sans', sans-serif;
+}
+
+*{
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+.asterisk{
+    color: #e74c3c;
+}
+
+html {
+    background-color: ;
+}
+
+body{
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+/* CSS header */ 
+
+header{
+    display: flex;
+    width: 100%;
+    height: 6em;
+    background-color: #fff;
+    border-bottom: 1px solid grey;
+}
+
+.head-left {
+    width: 40%;
+}
+
+.head-right {
+    width: 60%;
+    height: 6em;
+}
+
+.logo {
+    width: 3.5em;
+    height: 4em;
+    margin: 1.2em 0 0 1em;
+    box-shadow: 1px 1px 30px -10px black;
+    border-radius: 0.5em;
+}
+
+.welcome:hover{
+    border-bottom: #fff; 
+    cursor: auto;
+}
+
+header nav{
+    display: flex;
+    justify-content: right;
+    width: 12em;
+    
+}
+
+nav>a{
+    display: flex;
+    align-items: center;
+    color: black;
+    margin: 2em;
+    
+}
+
+nav>a:hover{
+    border-bottom: #333333 solid; 
+}
+
+header p{
+   margin: 2em;
+}
+
+
+
+/* CSS main */
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto 3em;
+    
+    
+    
+}
+
+.main-off{
+    width: 50%;
+    padding: 1em 0;
+    margin-top: 3em;
+    margin-bottom: 2em;
+    font-size: 0.8em;
+    background-color: white;
+    border: 2px solid black;
+    
+}
+
+
+/*CSS footer */
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6em;
+    width:100%;
+    background-color: #000;
+    
+    
+}
+
+footer>p{
+    
+    color: white;
+    
+}
+
+
+/* CSS index */
+ 
+.intro{
+    height: 100%;
+    margin: 2em auto 1em;
+    padding: 1em 1em;
+    text-align: center;
+    border-bottom: 1px solid grey;
+}
+.intro>img{
+    width: 90%;
+}
+
+
+.actor-list{
+    width: 90%;
+    height: 100%;
+    border: 2px solid black;
+    margin: 1em auto;
+    padding: 2em 2em;
+    
+}
+.actor-list>p, .actor-list>h2{
+    text-align: center;
+}
+
+article>.content{
+    width: 65%;
+    
+}
+article{
+    width: 100%;
+    border: 1px solid black;
+    margin: 2em 0;
+    display: flex;
+    position: relative;
+    
+}
+
+article>img{
+    
+    width: 20%;
+    padding: 1em 1em;
+    margin: 1em 1em;
+    border: 1px solid grey;
+    
+}
+article>.content{
+    padding: 1em  1em ;
+    width: 60%;
+    
+}
+
+article>.content>h3{
+    color: grey;
+    margin-top: 0;
+    
+}
+
+article>a{
+    width: 10%;
+    height: 1.5em;
+    bottom: 0;right: 0;
+    position: absolute;
+    background-color: #FF0000;
+    border-top: 1px solid black;
+    border-left : 1px solid black;
+    cursor: pointer;
+    -webkit-appearance: none;
+    font-size: 1em;
+    text-align: center;
+}
+
+
+
+
+/* CSS actors */
+
+.intro-actor{
+    width: 90%;
+    height: 100%;
+    margin: 2em auto 1em;
+    padding: 1em 1em;
+    text-align: center;
+    border: 2px solid black;
+}
+
+
+.intro-actor>img{
+    width: 30%;
+    margin: auto;
+}
+
+.intro-actor>a{
+    color: black;
+    text-decoration: underline;
+}
+
+.comment{
+    width: 90%;
+    height: 100%;
+    border: 2px solid black;
+    margin: 0 auto 1em;
+    padding: 1em 1em;
+    text-align: center;
+}
+
+.top-comment{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.list-comment>article{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+    
+}
+
+.list-comment h4, .list-comment p{
+    padding: 0 1em;
+}
+
+
+textarea{
+    width: 95%;
+    margin: auto;
+    height: 10em;
+    padding: 1em
+}
+
+
+
+/* CSS Reaction (nouveau commentaire et like/dislike)*/
+
+.reaction {
+    display: flex; 
+    align-items: center;
+}
+
+.lien-new {
+    width: 7em;
+    padding: 1em;
+    margin: 0.5em 0.5em;
+    text-align: center;
+    outline: none;
+    background-color: #FF0000;
+    border-radius: 1em;
+}
+
+.reaction-btn {
+    padding-left: 1em;
+}
+
+.reaction a img {
+    width: 2em;
+    height: 2em;
+    
+}
+
+.reaction p {
+    font-size: 1.2em;
+    font-weight: 800;
+     
+    
+}
+.reaction>p{
+    margin: 1em; 
+}
+
+
+.main-off>p {
+    margin-bottom: 4em;
+    margin-top : 4em;
+}
+
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+form>a{
+    color: black;
+    margin-bottom: 1em;
+   
+}
+.champs>label{
+    width: 15em;
+}
+
+.champs{
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 2em;
+    padding-bottom: 0.5em;
+}
+
+
+input[type=text], input[type=password], select {
+    width: 100%;
+    padding: 0.5em 0.5em 0.1em;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    background-color: transparent;
+    
+}
+
+.register{
+    background-color: #000;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid white;
+    cursor: pointer;
+    width: 45%;
+    -webkit-appearance: none;
+    border-radius: 2em;
+    font-size: 1em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+
+
+input[type=submit] {
+    background-color: #FF0000;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid #e74c3c;
+    cursor: pointer;
+    width: 50%;
+    -webkit-appearance: none;
+    border-radius: 2em;
+    font-size: 1em;
+}    
+
+.return{
+    width: 3em;
+    height: 3em;
+    position: fixed;
+    left: 1em; top : 6.5em;
+    
+}
+
+/* CSS add-commentaire */
+.main-comment{
+    width: 50%;
+    margin: auto;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: white;
+}
+
+.main-comment>form>textarea{
+    width: 90%;
+    height: 20em;
+    min-height: 15em;
+}
+
+
+
+/* CSS pour mobile */
+@media only screen and (max-width : 500px) {
+    
+.main-off{
+    width: 95%;
+    padding: 1em 0;
+    margin-top: 3em;
+    margin-bottom: 2em;
+    font-size: 0.8em;
+    
+}
+
+    footer {
+    height: 2em;
+    position: inherit;
+    }
+    
+    article{
+    width: 95%;
+    height: auto;
+    margin: 2em auto;
+    padding: 1em 0 0;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    
+}
+    article>img{
+    height: auto;
+    width: 100%;
+    
+}
+article>.content{
+    padding: 1em  1em ;
+    width: 60%;
+    margin-bottom: 1em;
+    
+}
+article>.content>p{
+    width: 100%;
+    text-align: center;
+    
+}
+article>.content>h3{
+    text-align: center;
+    
+}
+
+article>a{
+    width: 100%;
+    margin-top: 1em;
+}
+
+    .top-comment{
+    display: flex;
+    flex-direction: column;
+}
+    .new-comment {
+      align-items: flex-start;  
+    }
+}
