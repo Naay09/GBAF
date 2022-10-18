@@ -1,4 +1,6 @@
-<html lang="fr"><head>
+<html lang="fr">
+   
+   <head>
         
         <meta charset="utf-8">
         <title>GBAF - Accueil</title>
@@ -9,6 +11,7 @@
     <body>
         
     <?php require ('includes/header-on.php'); ?>
+    <?php require ('includes/db-connection.php'); ?>
         
         <main class="main-on">
             <div class="intro">
@@ -25,58 +28,40 @@
 
            <img src="img/banner.jpg">
               </div>     
-            <div class="actor-list">
-                    <h2>Acteurs et partenaires du système bancaire français</h2>
-                       
-                        <article>
-                           <img src="img/cde.png" alt="acteur">
-                            <div class="content">
-                                <h3>CDE</h3>
-                                <p>La CDE (Chambre Des Entrepreneurs) accompagne les entreprises dans leurs démarches de formation... </p>
-                                
-                           </div>
-                           <a href="actor1.html" name="suite">Lire la suite</a>
-                           
-                        </article>
-
-                        <article>
-                           <img src="img/dsafrance.png" alt="acteur">
-                            <div class="content">
-                                <h3>DSA France</h3>
-                                <p>Dsa France accélère la croissance du territoire et s’engage avec les collectivités territoriale...</p>
-                                
-                           </div>
-                           <a href="actor2.html" name="suite">Lire la suite</a>
-                           
-                        </article>
-
-                        <article>
-                           <img src="img/protectpeople.png" alt="acteur">
-                            <div class="content">
-                                <h3>ProtectPeople</h3>
-                                <p>Protectpeople finance la solidarité nationale. Nous appliquons le principe édifié...</p>
-                                
-                           </div>
-                           <a href="actor3.html" name="suite">Lire la suite</a>
-                           
-                        </article>
-
-                        <article>
-                           <img src="img/formationco.png" alt="acteur">
-                            <div class="content">
-                                <h3>Formation&Co</h3>
-                                <p>Formation&co est une association française présente sur tout le territoire. Nous proposons à des...</p>
-                                
-                           </div>
-                           <a href="actor4.html" name="suite">Lire la suite</a>
-                           
-                        </article>
-                                              
-                   </div>
+              <div class="actor-list">
                
+               <h2>Acteurs et partenaires</h2>
+                <p> Présentation de la liste des différents acteurs du système bancaire français </p>
+
+            <?php
+
+            // On récupère tout le contenu de la table acteurs
+            $sqlQuery = 'SELECT * FROM acteur';
+            $actorsQuery = $dbConnection->prepare($sqlQuery);
+            $actorsQuery->execute();
+            $actors = $actorsQuery->fetchAll();
+
+            // On affiche les infos de chaque acteur un à un
+
+            foreach ($actors as $actor) {
+            ?>
+            <article>
+                
+                <img src="<?php echo $actor['logo']; ?>" alt="acteur">
+
+                <div class="content">
+                    <h3><?php echo $actor['acteur'];?></h3>
+                    <p><?php echo substr ($actor['description'], 0, 130);?>...</p>
+                </div>
+
+                <a href="actor.php?id=<?php echo $actor['id_acteur'];?>" name="suite">Lire la suite</a>
+                                
+            </article>
+
+            <?php
+            }
+            ?>
                
-        
-            
         </main>
         
     <?php require ('includes/footer.php'); ?>
