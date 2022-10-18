@@ -5,25 +5,9 @@
     </head>
     <body>
 
- <header>
-    
-     <a href="index.html" class="head-left"><img class="logo" src="img/logo-gbaf.png"></a>
-    
+    <?php require ('includes/header-on.php'); ?>
 
-
-    <nav class="head-right">
-
-        <a href="#" class="welcome"><p>Bienvenue Naila Said</p></a>
-
-        <a href="account.html">Mon Compte</a>    
-        
-        <a href="login.html">Deconnexion</a>
-        
-    </nav>
-    
-</header>
-
-        <a href="index.html"><img class="return" src="img/return.png"></a>
+        <a href="index.php"><img class="return" src="img/return.png"></a>
         
            <main class="main-off">
         
@@ -52,13 +36,7 @@
               <p>Tout les champs avec un  <span class="asterisk">*</span> sont obligatoire !</p>
            </main>
 
-        <footer>
-    
-    <p> | <a href="#">Mentions légales</a> | <a href="#">Contact</a> |  </p>
-    
-</footer>
-    
-    
+     <?php require ('includes/footer.php'); ?>    
      
 
 </body></html>

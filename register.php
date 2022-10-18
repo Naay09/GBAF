@@ -8,11 +8,7 @@
     
     <body>
         
-        <header>
-    
-    <a href="index.html" class="head-left"><img class="logo" src="img/logo-gbaf.png"></a>
-    
-</header>
+    <?php require ('includes/header-off.php'); ?>
 
         <main class="main-off">
             
@@ -64,13 +60,6 @@
             
         </main>
         
-        <footer>
-    
-    <p> | <a href="#">Mentions légales</a> | <a href="#">Contact</a> |  </p>
-    
-</footer>
-    
-
-
+    <?php require ('includes/footer.php'); ?>
 
  </body></html>

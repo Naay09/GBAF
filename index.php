@@ -8,23 +8,7 @@
     
     <body>
         
-        <header>
-    
-            <a href="index.html" class="head-left"><img class="logo" src="img/logo-gbaf.png"></a>
-        
-
-
-            <nav class="head-right">
-
-                <a href="#" class="welcome"><p>Bienvenue Naila Said</p></a>
-
-                <a href="account.html">Mon Compte</a>    
-                
-                <a href="login.html">Deconnexion</a>
-                
-            </nav>
-    
-        </header>
+    <?php require ('includes/header-on.php'); ?>
         
         <main class="main-on">
             <div class="intro">
@@ -95,14 +79,7 @@
             
         </main>
         
-<footer>
-    
-    <p> | <a href="#">Mentions légales</a> | <a href="#">Contact</a> |  </p>
-    
-</footer>
+    <?php require ('includes/footer.php'); ?>
     
     
-
-
-
 </body></html>
