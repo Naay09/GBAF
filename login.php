@@ -1,4 +1,6 @@
-<html lang="fr"><head>
+<html lang="fr">
+    
+    <head>
         
         <meta charset="utf-8">
         <title>GBAF - Bienvenue sur l'extranet du GBAF</title>
@@ -14,8 +16,29 @@
             
             <p> Bienvenue sur l'extranet du GBAF </p>
             
+            <?php
+                    if(isset($_GET['login_err']))
+                    {
+                        $err = htmlspecialchars($_GET['login_err']);
+
+                        switch($err)
+                        {
+                            case 'password' :
+                            ?>
+                                <p><strong>Erreur</strong> Mot de passe incorrect !</p>
+                            <?php
+                            break;
+
+                            case 'username' :
+                            ?>
+                                <p><strong>Erreur</strong> Utilisateur introuvable !</p>
+                            <?php
+                            break;
+                        }
+                    }
+            ?>
             
-                <form action="login.html" method="post">
+                <form action="login-control.php" method="post">
                    <div class="champs">        
                     <label>Nom d'utilisateur : <span class="asterisk">*</span></label><br>
                     <input type="text" name="username" placeholder="Dupont" required=""><br>
@@ -30,13 +53,13 @@
                            
                 </form>
             
-            <a class="register" href="register.html">INSCRIPTION</a>
+            <a class="register" href="register.php">INSCRIPTION</a>
             
             <label>Tous les champs avec un  <span class="asterisk">*</span> sont obligatoires !</label><br>
-            
         </main>
         
-     <?php require ('includes/footer.php'); ?>
-         
+    <?php require ('includes/footer.php'); ?>
+    
 
-</body></html>
+    </body>
+</html>
