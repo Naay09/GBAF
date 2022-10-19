@@ -1,14 +1,17 @@
+<?php
+session_start();
+?>
 
 <header>
     <a href="index.php" class="head-left"><img class="logo" src="img/logo-gbaf.png"></a>
             
         <nav class="head-right">
 
-            <a href="#" class="welcome"><p>Bienvenue Utilisateur</p></a>
+            <a href="#" class="welcome"><p>Bienvenue <?php echo $_SESSION['user']; ?></p></a>
 
-            <a href="#">Mon Compte</a>    
+            <a href="account.php">Mon Compte</a>    
             
-            <a href="#">Deconnexion</a>
+            <a href="log-off.php">Deconnexion</a>
             
         </nav>
 </header>
