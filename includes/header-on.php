@@ -11,7 +11,7 @@ session_start();
 
             <a href="account.php">Mon Compte</a>    
             
-            <a href="log-off.php">Deconnexion</a>
+            <a href="logoff-process.php">Deconnexion</a>
             
         </nav>
 </header>
