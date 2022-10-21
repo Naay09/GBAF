@@ -1,4 +1,10 @@
-<html lang="fr"><head>
+<?php
+session_start();
+?>
+
+<html lang="fr">
+    
+    <head>
         
         <meta charset="utf-8">
         <title>GBAF - Mot de passe oublié</title>
@@ -8,18 +14,40 @@
     
     <body>
         
-       <header>
-    
-    <a href="index.html" class="head-left"><img class="logo" src="img/logo-gbaf.png"></a>
-    
-</header>
+    <?php require ('includes/header-off.php'); ?>
+    <?php require ('includes/db-connection.php'); ?>
+
 
         <main class="main-off">
             
             <p> Mot de passe oublié ? </p>
+
+             
+                <?php
+
+            if(isset($_GET['forgot_err']))
+            {
+                $err = htmlspecialchars($_GET['forgot_err']);
+
+                switch($err)
+                {
+                    case 'wrong_answer' :
+                    ?>
+                    <p><strong>Erreur</strong> Les données sont incorrectes !</p> 
+                    <?php
+                    break;
+
+                    case 'username' :
+                    ?>
+                        <p><strong>Erreur</strong> Le nom d'utilisateur n'existe pas !</p> 
+                        <?php
+                    break;
+                }
+            }
+            ?>
             
             
-                <form method="post">
+                <form action="forgot_process.php" method="post">
             
                     <div class="champs">
                         <label>Nom d'utilisateur : <span class="asterisk">*</span></label>
@@ -44,20 +72,16 @@
                            
                 </form>
             
-            <a class="register" href="register.html">INSCRIPTION</a>
-            <a class="register" href="login.html">DEJA INSCRIT ?</a>
+            <a class="register" href="register.php">INSCRIPTION</a>
+            <a class="register" href="login.php">DEJA INSCRIT ?</a>
             
             <label>Tous les champs avec un  <span class="asterisk">*</span> sont obligatoires !</label><br>
             
         </main>
         
         
-        <footer>
-    
-    <p> | <a href="#">Mentions légales</a> | <a href="#">Contact</a> |  </p>
-    
-</footer>
+     <?php require ('includes/footer.php'); ?>
     
 
-
- </body></html>
+    </body>
+</html>

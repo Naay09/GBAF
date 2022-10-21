@@ -1,4 +1,10 @@
-<html lang="fr"><head>
+<?php
+session_start();
+?>
+
+<html lang="fr">
+    
+    <head>
         
         <meta charset="utf-8">
         <title>GBAF - Mot de passe oublié</title>
@@ -8,20 +14,16 @@
     
     <body>
         
-       <header>
-    
-    <a href="index.html" class="head-left"><img class="logo" src="img/logo-gbaf.png"></a>
-    
-</header>
+    <?php require ('includes/header-off.php'); ?>
 
-        <a href="forgot_password.html"><img class="return" src="img/return.png"></a>
+        <a href="forgot_password.php"><img class="return" src="img/return.png"></a>
 
         <main class="main-off">
             
             <p> Nouveau mot de passe </p>
             
             
-                <form method="post">
+                <form action="newpass_process.php" method="post">
             
                     <div class="champs">
                         <label>Mot de passe : <span class="asterisk">*</span></label>
@@ -38,12 +40,7 @@
         </main>
         
         
-        <footer>
+    <?php require ('includes/footer.php'); ?>
     
-    <p> | <a href="#">Mentions légales</a> | <a href="#">Contact</a> |  </p>
-    
-</footer>
-    
-
-
- </body></html>
+    </body>
+ </html>
