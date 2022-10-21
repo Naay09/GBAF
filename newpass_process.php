@@ -1,25 +1,25 @@
 <?php
 session_start();
+
 require ('includes/db-connection.php');
 
     // On vérifie que le champ $_POST['password'] est présent
 
-    if(isset($_POST['password']))
+    if(isset($_POST['newpassword']))
     {
         // Pour éviter la faille XSS
-		$password = htmlspecialchars($_POST['password']);
-
-        if(!empty($_POST['password']))
-        { 
-            $password = password_hash($password,PASSWORD_DEFAULT);
+		$password = htmlspecialchars($_POST['newpassword']);
+        $pass_hash = password_hash($password,PASSWORD_DEFAULT);
 
             $sqlUpdate = 'UPDATE account SET password= :password WHERE username= :username';
                 $update = $dbConnection ->prepare($sqlUpdate);
+                
                 $update->execute(array(
-                    'username' => $SESSION['user'],
-                    'password' => $password,
+                    'password'=>$pass_hash,
+                    'username'=>$_SESSION['user']
                 ));
+
                 header('Location: index.php');
 
-        }else header('Location: forgot_password2.php');
+
     }else header('Location: forgot_password.php');
