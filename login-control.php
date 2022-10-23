@@ -12,8 +12,8 @@ require ('includes/db-connection.php');
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);
         
-        // On récupère nom, prenom , username et password de la table account dans $sqlQuery où le username == $username
-        $sqlQuery = 'SELECT nom, prenom, username, password FROM account WHERE username = ?';
+        // On récupère toutes les données de la table account dans $sqlQuery où le username == $username
+        $sqlQuery = 'SELECT * FROM account WHERE username = ?';
         $check = $dbConnection->prepare($sqlQuery);
         $check ->execute(array($username));
         $data = $check->fetch();
@@ -27,6 +27,7 @@ require ('includes/db-connection.php');
             if ($isPasswordCorrect) 
            {
             //Si oui on stocke les données de session et on renvoie vers la page d'accueil
+                $_SESSION['id_user'] = $data['id_user'];
                 $_SESSION['user'] = $data['username'];
                 $_SESSION['lastname']= $data['nom'];
                 $_SESSION['firstname']= $data['prenom'];
@@ -37,5 +38,3 @@ require ('includes/db-connection.php');
     }else header('Location: login.php');
 
 exit;
-    
-?>
