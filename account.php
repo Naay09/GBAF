@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['user']))
+if(!isset($_SESSION['id_user']))
     header('Location: login.php');
 ?>
 
@@ -22,44 +22,98 @@ if(!isset($_SESSION['user']))
 
            <?php
 
-           $username = $_SESSION['user'];
+            $id = $_SESSION['id_user'];
 
-                // On récupère tout le contenu de la table account dans $sqlQuery où le username = $_SESSION['user']
-                $sqlQuery = 'SELECT * FROM account WHERE username = ?';
-                $accountQuery = $dbConnection->prepare($sqlQuery);
-                $accountQuery->execute(array($username));
-                $account = $accountQuery->fetch();
+            // On récupère tout le contenu de la table account dans $sqlQuery où le id_user = $id
+            $sqlQuery = 'SELECT * FROM account WHERE id_user = ?';
+            $accountQuery = $dbConnection->prepare($sqlQuery);
+            $accountQuery->execute(array($id));
+            $account = $accountQuery->fetch();
 
+
+                if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['username']) && isset($_POST['password']))
+                { 
+                    // Pour éviter la faille XSS
+                    $newName = htmlspecialchars($_POST['nom']);
+                    $newFirstName = htmlspecialchars($_POST['prenom']) ;
+                    $newUsername = htmlspecialchars($_POST['username']);
+                    $password = htmlspecialchars($_POST['password']);
+
+                    
+                    if ($newName != $account['nom'])
+                    {
+                    $sqlUpdate = 'UPDATE account SET nom= :nom WHERE id_user= :id';
+                    $update = $dbConnection ->prepare($sqlUpdate);
+                    $update->execute(array(
+                        'id' => $id,
+                        'nom' => $newName
+                    ));
+                    $ok = '<p>Vos modifications ont bien été pris en compte !</p>';
+                    }
+
+                    if ($newFirstName != $account['prenom'])
+                    {
+                    $sqlUpdate = 'UPDATE account SET prenom= :prenom WHERE id_user= :id';
+                    $update = $dbConnection ->prepare($sqlUpdate);
+                    $update->execute(array(
+                        'id' => $id,
+                        'prenom' => $newFirstName
+                    ));
+                    $ok = '<p>Vos modifications ont bien été pris en compte !</p>';
+                    }
+                    
+
+                    if ($newUsername != $account['username'])
+                    {
+                    $sqlQuery = 'SELECT * FROM account WHERE username = ?';
+                    $upAccountQuery = $dbConnection->prepare($sqlQuery);
+                    $upAccountQuery->execute(array($newUsername));
+                    $upAccount = $upAccountQuery->fetch();
+                    $usernameTaken = $upAccountQuery->rowCount();
+
+                    if($usernameTaken == 0)
+                    {
+                        if(strlen($newUsername) <= 100)
+                        {
+                        $sqlUpdate = 'UPDATE account SET username= :newUsername WHERE id_user= :id';
+                        $update = $dbConnection ->prepare($sqlUpdate);
+                        $update->execute(array(
+                            'id' => $id,
+                            'newUsername' => $newUsername
+                        ));
+                        $ok = '<p>Vos modifications ont bien été pris en compte !</p>';
+                        }else $errLength = '<p>Pseudo trop long !</p>';
+                    }else $errAlready = '<p> Pseudo déjà pris !</p>';
+                    }
+                }
            ?>
         
                 <p>MON COMPTE</p>
+
+                <?php 
+                    if(isset($ok)) { echo $ok; }
+                    if(isset($errLength)) { echo $errLength; } 
+                    if(isset($errAlready)) { echo $errAlready; } 
+                    // On récupère tout le contenu de la table account dans $sqlQuery où le id_user = $id
+                    $sqlQuery = 'SELECT * FROM account WHERE id_user = ?';
+                    $accountQuery = $dbConnection->prepare($sqlQuery);
+                    $accountQuery->execute(array($id));
+                    $account = $accountQuery->fetch();
+                ?>
                 
-                <form action="update_process.php" method="post">
+                <form action="account.php" method="post">
                     <div class="champs"> 
                         <label>Nom : <span class="asterisk">*</span></label>
-                            <input type="text" value="<?php echo $account['upnom'];?>" name="nom" required="">
+                            <input type="text" value="<?php echo $account['nom'];?>" name="nom" required="">
                     </div>
                     <div class="champs">
                         <label>Prénom : <span class="asterisk">*</span></label>
-                            <input type="text" value="<?php echo $account['upprenom'];?>" name="prenom" required="">
+                            <input type="text" value="<?php echo $account['prenom'];?>" name="prenom" required="">
                     </div>
                     <div class="champs">
                         <label>Nom d'utilisateur : <span class="asterisk">*</span></label>
-                            <input type="text" value="<?php echo $account['upusername'];?>" name="username" required="">
+                            <input type="text" value="<?php echo $account['username'];?>" name="username" required="">
                      </div>
-                    <div class="champs"> 
-                        <label for="question">Question Secrète : <span class="asterisk">*</span></label>
-                            <select class="question" name="upquestion">
-                                <option selected="" disabled=""><?php echo $account['question'];?></option>
-                                <option value="Quel est le nom de jeune fille de votre mère ?">Quel est le nom de jeune fille de votre mère ?</option>
-                                <option value="Quel est le nom de votre ville natale ?">Quel est le nom de votre ville natale ?</option>
-                                <option value="Quel est le nom de votre meilleur/e ami/e ?">Quel est le nom de votre meilleur/e ami/e ?</option>
-                            </select>
-                    </div>
-                    <div class="champs"> 
-                        <label>Réponse : <span class="asterisk">*</span></label>
-                            <input type="text" value="<?php echo $account['reponse'];?>" name="upreponse" required="">
-                    </div>
                     <div class="champs">
                         <label>Mot de passe : <span class="asterisk">*</span></label>
                             <input type="password" placeholder="Entrer le mot de passe actuel pour confirmer les changements" name="password" required="">
