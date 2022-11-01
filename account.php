@@ -31,69 +31,83 @@ if(!isset($_SESSION['id_user']))
             $account = $accountQuery->fetch();
 
 
-                if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['username']) && isset($_POST['password']))
+                if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['username']) && isset($_POST['question']) && isset($_POST['reponse']) && isset($_POST['password']))
                 { 
                     // Pour éviter la faille XSS
                     $newName = htmlspecialchars($_POST['nom']);
                     $newFirstName = htmlspecialchars($_POST['prenom']) ;
                     $newUsername = htmlspecialchars($_POST['username']);
                     $password = htmlspecialchars($_POST['password']);
+                    $newQuestion = htmlspecialchars($_POST['question']);
+                    $newResponse = htmlspecialchars($_POST['reponse']);
 
-                    
-                    if ($newName != $account['nom'])
+
+                    // Check de la validité des infos
+                    function checkForm($newUsername, $dbConnection) 
                     {
-                    $sqlUpdate = 'UPDATE account SET nom= :nom WHERE id_user= :id';
-                    $update = $dbConnection ->prepare($sqlUpdate);
-                    $update->execute(array(
-                        'id' => $id,
-                        'nom' => $newName
-                    ));
-                    $ok = '<p>Vos modifications ont bien été pris en compte !</p>';
+                        // Check longueur usernanme
+                        if (strlen($newUsername) > 100) {
+                            echo('<p>Pseudo trop long !</p>');
+                            return false;
+                        }	
+                        // Check si username déjà pris
+                        elseif(checkUser($dbConnection, $newUsername)){
+                            echo('<p> Pseudo déjà pris !</p>');
+                            return false;
+                        }
+
+                        // Si tout est bon on valide les modifs
+                        echo('<p>Vos modifications ont bien été pris en compte !</p>');     
+                        return true;
                     }
 
-                    if ($newFirstName != $account['prenom'])
+                    // Requête pour update les infos en BDD
+                    function updateUser($dbConnection, $newName, $newFirstName, $newUsername, $newQuestion, $newResponse, $id)
                     {
-                    $sqlUpdate = 'UPDATE account SET prenom= :prenom WHERE id_user= :id';
-                    $update = $dbConnection ->prepare($sqlUpdate);
-                    $update->execute(array(
-                        'id' => $id,
-                        'prenom' => $newFirstName
-                    ));
-                    $ok = '<p>Vos modifications ont bien été pris en compte !</p>';
-                    }
-                    
-
-                    if ($newUsername != $account['username'])
-                    {
-                    $sqlQuery = 'SELECT * FROM account WHERE username = ?';
-                    $upAccountQuery = $dbConnection->prepare($sqlQuery);
-                    $upAccountQuery->execute(array($newUsername));
-                    $upAccount = $upAccountQuery->fetch();
-                    $usernameTaken = $upAccountQuery->rowCount();
-
-                    if($usernameTaken == 0)
-                    {
-                        if(strlen($newUsername) <= 100)
-                        {
-                        $sqlUpdate = 'UPDATE account SET username= :newUsername WHERE id_user= :id';
-                        $update = $dbConnection ->prepare($sqlUpdate);
+                        $sqlUpdate = 'UPDATE account SET nom = :nom, prenom = :prenom, username = :username, question = :question, reponse = :reponse WHERE id_user= :id';
+                        $update = $dbConnection->prepare($sqlUpdate);
                         $update->execute(array(
-                            'id' => $id,
-                            'newUsername' => $newUsername
+                            'nom' => $newName, 
+                            'prenom' => $newFirstName, 
+                            'username' => $newUsername, 
+                            'question' => $newQuestion,
+                            'reponse' => $newResponse,
+                            'id' => $id
                         ));
-                        $ok = '<p>Vos modifications ont bien été pris en compte !</p>';
-                        }else $errLength = '<p>Pseudo trop long !</p>';
-                    }else $errAlready = '<p> Pseudo déjà pris !</p>';
                     }
+
+
+                    // Check si le pseudo existe déjà dans la BDD
+                    function checkUser($dbConnection, $newUsername)
+                    {
+                        $sqlQuery = 'SELECT * FROM account WHERE username = ?';
+                        $upAccountQuery = $dbConnection->prepare($sqlQuery);
+                        $upAccountQuery->execute(array($newUsername));
+                        $upAccount = $upAccountQuery->fetch();
+                        $usernameTaken = $upAccountQuery->rowCount();
+
+                        if($usernameTaken == 1)
+                        {
+                            return true;
+                        }
+
+                        return false;
+                    }
+
+                    // Check si le formulaire est valide
+                    $validForm = checkForm($newUsername, $dbConnection);
+                    // Si c'est bon on update l'utilisateur en base de données
+                    if($validForm)
+                    {
+                        updateUser($dbConnection, $newName, $newFirstName, $newUsername, $newQuestion, $newResponse, $id);
+                    }
+
                 }
            ?>
         
                 <p>MON COMPTE</p>
 
                 <?php 
-                    if(isset($ok)) { echo $ok; }
-                    if(isset($errLength)) { echo $errLength; } 
-                    if(isset($errAlready)) { echo $errAlready; } 
                     // On récupère tout le contenu de la table account dans $sqlQuery où le id_user = $id
                     $sqlQuery = 'SELECT * FROM account WHERE id_user = ?';
                     $accountQuery = $dbConnection->prepare($sqlQuery);
