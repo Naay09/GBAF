@@ -105,7 +105,7 @@ if(!isset($_SESSION['id_user']))
                 }
            ?>
         
-            <h3>MON COMPTE</h3>
+                <h3>MON COMPTE</h3>
 
                 <?php 
                     // On récupère tout le contenu de la table account dans $sqlQuery où le id_user = $id
@@ -128,6 +128,27 @@ if(!isset($_SESSION['id_user']))
                         <label>Nom d'utilisateur : <span class="asterisk">*</span></label>
                             <input type="text" value="<?php echo $account['username'];?>" name="username" required="">
                      </div>
+                     <div class="champs"> 
+                        <label for="question">Question Secrète : <span class="asterisk">*</span></label>
+                            <select class="question" name="question">
+                                <?php
+                                $selected = ($account['question'] == "Quel est le nom de jeune fille de votre mère ?")? "selected":"";
+                                ?>
+                                <option <?php echo $selected;?> value="Quel est le nom de jeune fille de votre mère ?">Quel est le nom de jeune fille de votre mère ?</option>
+                                <?php
+                                $selected = ($account['question'] == "Quel est le nom de votre ville natale ?")? "selected":"";
+                                ?>
+                                <option <?=$selected;?> value="Quel est le nom de votre ville natale ?">Quel est le nom de votre ville natale ?</option>
+                                <?php
+                                $selected = ($account['question'] == "Quel est le nom de votre meilleur/e ami/e ?")? "selected":"";
+                                ?>
+                                <option <?=$selected;?> value="Quel est le nom de votre meilleur/e ami/e ?">Quel est le nom de votre meilleur/e ami/e ?</option>
+                            </select>
+                    </div>
+                    <div class="champs"> 
+                        <label>Réponse : <span class="asterisk">*</span></label>
+                            <input type="text" value="<?php echo $account['reponse'];?>" name="reponse" required="">
+                    </div>
                     <div class="champs">
                         <label>Mot de passe : <span class="asterisk">*</span></label>
                             <input type="password" placeholder="Entrer le mot de passe actuel pour confirmer les changements" name="password" required="">
