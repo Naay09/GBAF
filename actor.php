@@ -40,7 +40,7 @@ if(!isset($_SESSION['user']))
                 //die;
             }
         
-    ?>
+            ?>
 
                 <img src="<?php echo $actor['logo'];?>">
                 <h2><br><?php echo $actor['acteur'];?><br></h2>
@@ -76,18 +76,34 @@ if(!isset($_SESSION['user']))
                                 $likes->execute(array($_GET['id']));
                                 $nbLikes = $likes->fetch();
 
-                                 // On compte le nb de likes
+                                 // On compte le nb de dislikes
                                  $sqlQuery = 'SELECT COUNT(*) AS nb_dislikes FROM vote WHERE id_acteur = ? AND vote = 0';
                                  $dislikes = $dbConnection->prepare($sqlQuery);
                                  $dislikes->execute(array($_GET['id']));
                                  $nbDislikes = $dislikes->fetch();
 
+                                  // On compte le nb de vote s'il existe un vote on désactive le pointeur
+                                $sqlQuery = 'SELECT COUNT(*) AS nb_vote FROM vote WHERE id_acteur = ? AND id_user = ?';
+                                $voteQuery = $dbConnection->prepare($sqlQuery);
+                                $voteQuery->execute(array($_GET['id'], $_SESSION['id_user']));
+                                $nbVote = $voteQuery->fetch();
+
+                                $nbVoteUser = $nbVote['nb_vote'];
+
+                                if ($nbVoteUser == 1)
+                                {
+                            ?>
+                                    <style> .reaction-btn {cursor: auto;} </style>
+                            <?php
+                                    
+                                }
+
                             ?>
 
                                 <a href="#new-comment" class="lien-new">NOUVEAU COMMENTAIRE</a>
-                                <a href="vote.php?acteur=<?php echo $actor['id_acteur'];?>&amp;vote=1" class="reaction-btn like"><img src="img/like.png"></a><p><?php echo $nbLikes['nb_likes']; ?></p>
-                                <a href="vote.php?acteur=<?php echo $actor['id_acteur'];?>&amp;vote=0" class="reaction-btn dislike" class="reaction-btn dislike"><img src="img/dislike.png"></a><p><?php echo $nbDislikes['nb_dislikes']; ?></p>
-            
+                        
+                                <img id="like" class="reaction-btn like" src="img/like.png"></img><p id="like-score"><?php echo $nbLikes['nb_likes']; ?></p>
+                                <img id="dislike" class="reaction-btn dislike"src="img/dislike.png"></img><p id="dislike-score"><?php echo $nbDislikes['nb_dislikes']; ?></p> 
                             </div>
 
                 </div>
@@ -157,6 +173,55 @@ if(!isset($_SESSION['user']))
         
     <?php require ('includes/footer.php'); ?>
     
+    <script type="text/javascript">
+
+        let id_user=<?php echo $_SESSION['id_user']; ?>;
+        let id_actor = <?php echo $_GET['id']; ?>; 
+
+            
+        let like_target = document.getElementById("like");
+        let dislike_target = document.getElementById("dislike");
+        let like_score_target = document.getElementById("like-score");
+        let dislike_score_target = document.getElementById("dislike-score");
+
+        like_target.addEventListener('click', likeAction);
+        dislike_target.addEventListener('click', dislikeAction);
+
+        function likeAction(){
+            
+            fetch('vote.php?vote=1&id_actor='+id_actor+'&id_user='+id_user).then(function(response){
+             return response.json()
+            })
+            .then(function(json){ 
+                console.log(json) ;
+                like_score_target.textContent = json.vote.nb_vote;
+                    
+            })
+            .catch(function() {
+                console.log('Erreur de la promesse')
+            })
+            ;
+        }
+
+        function dislikeAction(){
+            
+            fetch('vote.php?vote=0&id_actor='+id_actor+'&id_user='+id_user).then(function(response){
+             return response.json()
+            })
+            .then(function(json){ 
+                console.log(json) ;
+                dislike_score_target.textContent = json.vote.nb_vote;
+                    
+            })
+            .catch(function() {
+                console.log('Erreur de la promesse')
+            })
+            ;
+        }
+
+    </script>
+    
+
 
     </body>
 </html>
