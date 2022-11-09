@@ -16,7 +16,7 @@
         <main class="main-off">
             
             
-            <p> Inscription </p>
+            <h3> Inscription </h3>
 
             <?php
                     if(isset($_GET['reg_err']))

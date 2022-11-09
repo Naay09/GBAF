@@ -21,7 +21,7 @@ session_start();
 
         <main class="main-off">
             
-            <p> Nouveau mot de passe </p>
+            <h3> Nouveau mot de passe </h3>
             
             
                 <form action="newpass_process.php" method="post">

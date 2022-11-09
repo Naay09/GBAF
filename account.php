@@ -105,7 +105,7 @@ if(!isset($_SESSION['id_user']))
                 }
            ?>
         
-                <p>MON COMPTE</p>
+            <h3>MON COMPTE</h3>
 
                 <?php 
                     // On récupère tout le contenu de la table account dans $sqlQuery où le id_user = $id

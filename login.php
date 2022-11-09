@@ -15,7 +15,7 @@
         
         <main class="main-off">
             
-            <p> Bienvenue sur l'extranet du GBAF </p>
+            <h3> Bienvenue sur l'extranet du GBAF </h3>
             
             <?php
                     if(isset($_GET['login_err']))

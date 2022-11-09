@@ -21,7 +21,7 @@ session_start();
 
         <main class="main-off">
             
-            <p> Mot de passe oublié ? </p>
+            <h3> Mot de passe oublié ? </h3>
 
              
                 <?php
