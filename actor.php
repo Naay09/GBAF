@@ -82,7 +82,7 @@ if(!isset($_SESSION['user']))
                                  $dislikes->execute(array($_GET['id']));
                                  $nbDislikes = $dislikes->fetch();
 
-                                  // On compte le nb de vote s'il existe un vote on désactive le pointeur
+                                  // On compte le nb de vote
                                 $sqlQuery = 'SELECT COUNT(*) AS nb_vote FROM vote WHERE id_acteur = ? AND id_user = ?';
                                 $voteQuery = $dbConnection->prepare($sqlQuery);
                                 $voteQuery->execute(array($_GET['id'], $_SESSION['id_user']));
@@ -99,11 +99,15 @@ if(!isset($_SESSION['user']))
                                 }
 
                             ?>
-
+                                <div class="add-post">
                                 <a href="#new-comment" class="lien-new">NOUVEAU COMMENTAIRE</a>
-                        
+                                </div>
+
+                                <div class="add-reaction">
                                 <img id="like" class="reaction-btn like" src="img/like.png"></img><p id="like-score"><?php echo $nbLikes['nb_likes']; ?></p>
                                 <img id="dislike" class="reaction-btn dislike"src="img/dislike.png"></img><p id="dislike-score"><?php echo $nbDislikes['nb_dislikes']; ?></p> 
+                                </div>
+                                
                             </div>
 
                 </div>

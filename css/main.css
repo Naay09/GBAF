@@ -275,9 +275,10 @@ textarea{
 
 /* CSS Reaction (nouveau commentaire et like/dislike)*/
 
-.reaction {
-    display: flex; 
+.reaction, .add-post, .add-reaction {
+    display: flex;
     align-items: center;
+    flex-direction: row;
 }
 
 .lien-new {
@@ -302,12 +303,11 @@ textarea{
 .reaction p {
     font-size: 1.2em;
     font-weight: 800;
+    margin: 1em; 
      
     
 }
-.reaction>p{
-    margin: 1em; 
-}
+
 
 
 .main-off>h3 {
@@ -465,6 +465,11 @@ main{
         border-radius: 2em;
         font-size: 1em;
     }    
+
+    .actor-list {
+        margin: auto;
+        padding: 0;
+    }
     
     article{
     width: 95%;
@@ -478,7 +483,7 @@ main{
 }
     article>img{
     height: auto;
-    width: 100%;
+    width: 80%;
     
 }
 article>.content{
@@ -502,11 +507,19 @@ article>a{
     margin-top: 1em;
 }
 
-    .top-comment{
+.intro-actor>img {
+    width: 80%;
+    margin: auto;
+}
+
+
+.top-comment, .reaction {
     display: flex;
     flex-direction: column;
 }
-    .new-comment {
+
+
+.new-comment {
       align-items: flex-start;  
     }
 }
