@@ -48,7 +48,7 @@
                     <label>Mot de passe : <span class="asterisk">*</span></label><br>
                     <input type="password" name="password" placeholder="***********" required=""><br>
                     </div>       
-                    <a href="forgot_password.html">Mot de passe oublié ?</a>
+                    <a href="forgot_password.php">Mot de passe oublié ?</a>
                    
                     <input type="submit" class="submit" value="CONNEXION"><br>
                            
