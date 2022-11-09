@@ -10,6 +10,7 @@ if(!isset($_SESSION['user']))
         
         <meta charset="utf-8">
         <title>GBAF - Accueil</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         
     </head>
@@ -19,7 +20,7 @@ if(!isset($_SESSION['user']))
     <?php require ('includes/header-on.php'); ?>
     <?php require ('includes/db-connection.php'); ?>
         
-        <main class="main-on">
+        <main class="main">
             <div class="intro">
                 
             <h1>Groupement Banque Assurance Français<br><br></h1>
