@@ -406,7 +406,7 @@ input[type=submit] {
 
 
 /* CSS pour mobile */
-@media screen and (max-width : 500px) {
+@media screen and (max-width : 1024px) {
 
 nav>a{
     display: flex;
