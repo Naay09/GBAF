@@ -7,7 +7,7 @@ session_start();
             
         <nav class="head-right">
 
-            <a href="#" class="welcome"><p>Bienvenue <?php echo $_SESSION['user']; ?></p></a>
+            <a href="#" class="welcome"><p>Bienvenue <?php echo $_SESSION['firstname']; ?></p></a>
 
             <a href="account.php">Mon Compte</a>    
             
