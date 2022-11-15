@@ -56,8 +56,7 @@ if(!isset($_SESSION['id_user']))
                     // Check si username déjà pris
                     elseif(checkUser($dbConnection, $newUsername)){
                         echo('<p> Pseudo déjà pris !</p>');
-                        echo $newUsername;
-                        echo $_SESSION['user'];
+
                         return false;
                     }
 
