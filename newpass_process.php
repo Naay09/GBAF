@@ -8,7 +8,7 @@ require ('includes/db-connection.php');
     if(isset($_POST['newpassword']))
     {
         // Pour éviter la faille XSS
-		$password = htmlspecialchars($_POST['newpassword']);
+		$password = htmlspecialchars($_POST['password']);
         $pass_hash = password_hash($password,PASSWORD_DEFAULT);
 
             $sqlUpdate = 'UPDATE account SET password= :password WHERE username= :username';
@@ -19,7 +19,7 @@ require ('includes/db-connection.php');
                     'username'=>$_SESSION['user']
                 ));
 
-                header('Location: index.php');
+                header('Location: login.php');
 
 
     }else header('Location: forgot_password.php');

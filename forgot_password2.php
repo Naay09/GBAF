@@ -31,7 +31,7 @@ session_start();
                             <input type="password" placeholder="Entrer le nouveau mot de passe" name="password" required="">
                     </div>
 
-                    <input type="submit" class="submit" name="forgot" value="VALIDER"><br>
+                    <input type="submit" class="submit" name="newpassword" value="VALIDER"><br>
                            
                 </form>
             
