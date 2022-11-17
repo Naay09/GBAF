@@ -4,13 +4,15 @@ if(!isset($_SESSION['user']))
     header('Location: login.php');
 ?>
 
+<!DOCTYPE html>
+
 <html lang="fr">
     
-    <head>
+<head>
         
         <meta charset="utf-8">
         <title>GBAF - Les acteurs</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         
     </head>
@@ -42,7 +44,7 @@ if(!isset($_SESSION['user']))
         
             ?>
 
-                <img src="<?php echo $actor['logo'];?>">
+                <img src="<?php echo $actor['logo'];?>"  alt="logo-acteur">
                 <h2><br><?php echo $actor['acteur'];?><br></h2>
                 <a href="#">Visiter le site de <?php echo $actor['acteur'];?></a><br>
                 <p><?php echo nl2br($actor['description']) ;?></p>
@@ -104,8 +106,8 @@ if(!isset($_SESSION['user']))
                                 </div>
 
                                 <div class="add-reaction">
-                                <img id="like" class="reaction-btn like" src="img/like.png"></img><p id="like-score"><?php echo $nbLikes['nb_likes']; ?></p>
-                                <img id="dislike" class="reaction-btn dislike"src="img/dislike.png"></img><p id="dislike-score"><?php echo $nbDislikes['nb_dislikes']; ?></p> 
+                                <img id="like" class="reaction-btn like" src="img/like.png" alt="like"></img><p id="like-score"><?php echo $nbLikes['nb_likes']; ?></p>
+                                <img id="dislike" class="reaction-btn dislike"src="img/dislike.png" alt="dislike"></img><p id="dislike-score"><?php echo $nbDislikes['nb_dislikes']; ?></p> 
                                 </div>
                                 
                             </div>
@@ -177,7 +179,7 @@ if(!isset($_SESSION['user']))
         
     <?php require ('includes/footer.php'); ?>
     
-    <script type="text/javascript">
+    <script>
 
         let id_user=<?php echo $_SESSION['id_user']; ?>;
         let id_actor = <?php echo $_GET['id']; ?>; 

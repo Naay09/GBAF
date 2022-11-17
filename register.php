@@ -1,10 +1,12 @@
+<!DOCTYPE html>
+
 <html lang="fr">
 
-    <head>
+<head>
         
         <meta charset="utf-8">
         <title>GBAF - Inscription</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         
     </head>
@@ -44,11 +46,9 @@
 
                     if(isset($_GET['reg_alert']) && $_GET['reg_alert'] == "success")
                     {
-                        $err = htmlspecialchars($_GET['reg_alert']);
                         ?>
-                        <p>Inscription réussie !</p>
+                        <p>Inscription réussie ! <a style = "color : black; font-weight : bold; text-decoration : underline;" href="index.php">Cliquer ici pour vous connecter</a> </p>
                         <?php
-                        header('Location: login.php');
                     }
             ?>
             
@@ -71,7 +71,7 @@
                         <input type="password" placeholder="Entrer le mot de passe" name="password" required="">
                     </div>
                     <div class="champs"> 
-                        <label for="question">Question Secrète : <span class="asterisk">*</span></label>
+                        <label>Question Secrète : <span class="asterisk">*</span></label>
                             <select class="question" name="question">
                                 <option selected="" disabled="">Choissisez une question secrète</option>
                                 <option value="Quel est le nom de jeune fille de votre mère ?">Quel est le nom de jeune fille de votre mère ?</option>

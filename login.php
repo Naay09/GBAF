@@ -1,10 +1,12 @@
+<!DOCTYPE html>
+
 <html lang="fr">
     
     <head>
         
         <meta charset="utf-8">
         <title>GBAF - Bienvenue sur l'extranet du GBAF</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         
     </head>

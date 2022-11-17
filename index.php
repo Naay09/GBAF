@@ -4,13 +4,15 @@ if(!isset($_SESSION['id_user']))
     header('Location: login.php');
 ?>
 
+<!DOCTYPE html>
+
 <html lang="fr">
    
-   <head>
+<head>
         
         <meta charset="utf-8">
         <title>GBAF - Accueil</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         
     </head>
@@ -33,7 +35,7 @@ if(!isset($_SESSION['id_user']))
             Cet extranet a pour but de répertorier un grand nombre d’informations sur les partenaires et acteurs du groupe ainsi que sur les produits et services  bancaires et financiers.<br><br>
             </p>
 
-           <img src="img/banner.jpg">
+           <img src="img/banner.jpg" alt="banner">
               </div>     
               <div class="actor-list">
                
@@ -54,14 +56,14 @@ if(!isset($_SESSION['id_user']))
             ?>
             <article>
                 
-                <img src="<?php echo $actor['logo']; ?>" alt="acteur">
+                <img src="<?php echo $actor['logo']; ?>" alt="logo-acteur">
 
                 <div class="content">
                     <h3><?php echo $actor['acteur'];?></h3>
                     <p><?php echo substr ($actor['description'], 0, 130);?>...</p>
                 </div>
 
-                <a href="actor.php?id=<?php echo $actor['id_acteur'];?>" name="suite">Lire la suite</a>
+                <a href="actor.php?id=<?php echo $actor['id_acteur'];?>">Lire la suite</a>
                                 
             </article>
 
@@ -74,4 +76,5 @@ if(!isset($_SESSION['id_user']))
     <?php require ('includes/footer.php'); ?>
     
     
-</body></html>
+    </body>
+</html>

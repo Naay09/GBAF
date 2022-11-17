@@ -4,13 +4,19 @@ if(!isset($_SESSION['id_user']))
     header('Location: login.php');
 ?>
 
+<!DOCTYPE html>
+
 <html>
-    <head>
+
+<head>
+        
         <meta charset="utf-8">
         <title>GBAF - Paramètres du compte</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <link rel="stylesheet" type="text/css" href="css/main.css">
+        
     </head>
+
     <body>
 
     <?php require ('includes/header-on.php'); ?>
@@ -56,7 +62,6 @@ if(!isset($_SESSION['id_user']))
                     // Check si username déjà pris
                     elseif(checkUser($dbConnection, $newUsername)){
                         echo('<p> Pseudo déjà pris !</p>');
-
                         return false;
                     }
 
@@ -141,7 +146,7 @@ if(!isset($_SESSION['id_user']))
                             <input type="text" value="<?php echo $account['username'];?>" name="username" required="">
                      </div>
                      <div class="champs"> 
-                        <label for="question">Question Secrète : <span class="asterisk">*</span></label>
+                        <label>Question Secrète : <span class="asterisk">*</span></label>
                             <select class="question" name="question">
                                 <?php
                                 $selected = ($account['question'] == "Quel est le nom de jeune fille de votre mère ?")? "selected":"";

@@ -2,13 +2,15 @@
 session_start();
 ?>
 
+<!DOCTYPE html>
+
 <html lang="fr">
     
-    <head>
+<head>
         
         <meta charset="utf-8">
         <title>GBAF - Mot de passe oublié</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         
     </head>
@@ -17,7 +19,7 @@ session_start();
         
     <?php require ('includes/header-off.php'); ?>
 
-        <a href="forgot_password.php"><img class="return" src="img/return.png"></a>
+        <a href="forgot_password.php"><img class="return" src="img/return.png" alt="return"></a>
 
         <main class="main-off">
             
