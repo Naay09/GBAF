@@ -1,28 +1,19 @@
 /*CSS GBAF */
 
 /*CSS Global*/
-
 html {
 	scroll-behavior: smooth;
 }
 
 @font-face{ 
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Open Sans";
     src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
             url("/fonts/OpenSans-Regular-webfont.woff") format("woff");
 }
 
-*{
-    font-family: 'Open Sans', sans-serif;
-    
-}
-
-.asterisk{
-    color: #e74c3c;
-}
-
 
 body{
+    font-family: "Open Sans", sans-serif;
     margin: 0;
     min-height: 100vh;
     display: flex;
@@ -31,10 +22,15 @@ body{
     
 }
 
+.asterisk{
+    color: #e74c3c;
+}
+
 a{
     text-decoration: none;
     color: white;
 }
+
 /* CSS header */ 
 
 header{
@@ -86,8 +82,6 @@ nav>a:hover{
 }
 
 
-
-
 /* CSS main */
 
 
@@ -108,6 +102,84 @@ main{
     font-size: 0.8em;
     background-color: white;
     border: 2px solid black;
+    
+}
+
+.main-off>h3 {
+    margin-bottom: 4em;
+    margin-top : 4em;
+}
+
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+form>a{
+    color: black;
+    margin-bottom: 2em;
+   
+}
+
+
+.champs{
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 2em;
+    padding-bottom: 0.5em;
+}
+
+.champs>label{
+    width: 15em;
+}
+
+
+input[type=text], input[type=password], select {
+    width: 100%;
+    padding: 0.5em 0.5em 0.1em;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    background-color: transparent;
+    
+}
+
+.register{
+    background-color: #000;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid white;
+    cursor: pointer;
+    width: 45%;
+    border-radius: 2em;
+    font-size: 1em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+
+
+input[type=submit] {
+    background-color: #FF0000;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid #e74c3c;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 2em;
+    font-size: 1em;
+}    
+
+.return{
+    width: 3em;
+    height: 3em;
+
+    left: 1em; top : 6.5em;
     
 }
 
@@ -309,84 +381,6 @@ textarea{
 }
 
 
-
-.main-off>h3 {
-    margin-bottom: 4em;
-    margin-top : 4em;
-}
-
-form{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
-
-form>a{
-    color: black;
-    margin-bottom: 2em;
-   
-}
-.champs>label{
-    width: 15em;
-}
-
-.champs{
-    border-bottom: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 90%;
-    margin-bottom: 2em;
-    padding-bottom: 0.5em;
-}
-
-
-input[type=text], input[type=password], select {
-    width: 100%;
-    padding: 0.5em 0.5em 0.1em;
-    border: none;
-    font-family: 'Open Sans', sans-serif;
-    background-color: transparent;
-    
-}
-
-.register{
-    background-color: #000;
-    color: white;
-    padding: 10px 20px;
-    border: 1px solid white;
-    cursor: pointer;
-    width: 45%;
-    border-radius: 2em;
-    font-size: 1em;
-    text-align: center;
-    margin-bottom: 1em;
-}
-
-
-
-input[type=submit] {
-    background-color: #FF0000;
-    color: white;
-    padding: 10px 20px;
-    border: 1px solid #e74c3c;
-    cursor: pointer;
-    width: 50%;
-    border-radius: 2em;
-    font-size: 1em;
-}    
-
-.return{
-    width: 3em;
-    height: 3em;
-
-    left: 1em; top : 6.5em;
-    
-}
-
-/* CSS add-commentaire */
 .main-comment{
     width: 50%;
     margin: auto;
@@ -406,6 +400,7 @@ input[type=submit] {
 
 
 /* CSS pour mobile */
+
 @media screen and (max-width : 1024px) {
 
 nav>a{
@@ -434,69 +429,73 @@ main{
     
 }
 
-    footer {
-    height: 3em;
-    position: inherit;
-    }
+footer {
+height: 3em;
+position: inherit;
+}
 
-    .champs {
+.champs {
 
-        margin-bottom: 4em;
-        flex-direction: column;
-
-    }
-
-    input[type=text], input[type=password], select {
-        width: 100%;
-        padding: 0.5em 0.5em 0.1em;
-        border: none;
-        font-family: 'Open Sans', sans-serif;
-        background-color: transparent;
-        font-size: small;
-    }
-
-    input[type=submit] {
-        background-color: #FF0000;
-        color: white;
-        padding: 10px 20px;
-        border: 1px solid #e74c3c;
-        cursor: pointer;
-        width: 90%;
-        border-radius: 2em;
-        font-size: 1em;
-    }    
-
-    .actor-list {
-        margin: auto;
-        padding: 0;
-    }
-    
-    article{
-    width: 95%;
-    height: auto;
-    margin: 2em auto;
-    padding: 1em 0 0;
-    display: flex; 
+    margin-bottom: 4em;
     flex-direction: column;
-    align-items: center;
+
+}
+
+input[type=text], input[type=password], select {
+    width: 100%;
+    padding: 0.5em 0.5em 0.1em;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    background-color: transparent;
+    font-size: small;
+}
+
+input[type=submit] {
+    background-color: #FF0000;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid #e74c3c;
+    cursor: pointer;
+    width: 90%;
+    border-radius: 2em;
+    font-size: 1em;
+}    
+
+.actor-list {
+    margin: auto;
+    padding: 0;
+}
+
+article{
+width: 95%;
+height: auto;
+margin: 2em auto;
+padding: 1em 0 0;
+display: flex; 
+flex-direction: column;
+align-items: center;
     
 }
-    article>img{
+
+article>img{
     height: auto;
     width: 80%;
     
 }
+
 article>.content{
     padding: 1em  1em ;
     width: 60%;
     margin-bottom: 1em;
     
 }
+
 article>.content>p{
     width: 100%;
     text-align: center;
     
 }
+
 article>.content>h3{
     text-align: center;
     
