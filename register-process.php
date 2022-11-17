@@ -9,8 +9,8 @@ require ('includes/db-connection.php');
     if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['question']) && isset($_POST['reponse']))
     {
         // Pour éviter la faille XSS
-        $lastname = htmlspecialchars($_POST['nom']);
-		$firstname = htmlspecialchars($_POST['prenom']) ;
+        $lastName = htmlspecialchars($_POST['nom']);
+		$firstName = htmlspecialchars($_POST['prenom']) ;
 		$username = htmlspecialchars($_POST['username']);
 		$password = htmlspecialchars($_POST['password']);
 		$question = htmlspecialchars($_POST['question']);
@@ -32,8 +32,8 @@ require ('includes/db-connection.php');
                 $sqlInsert = 'INSERT INTO account(nom, prenom, username, password, question, reponse) VALUES (:nom, :prenom, :username, :password, :question, :reponse)';
                 $register = $dbConnection ->prepare($sqlInsert);
                 $register->execute(array(
-                    'nom' => $lastname,
-                    'prenom' => $firstname,
+                    'nom' => $lastName,
+                    'prenom' => $firstName,
                     'username' => $username,
                     'password' => $password,
                     'question' => $question,
@@ -47,4 +47,3 @@ require ('includes/db-connection.php');
     
 exit;
     
-?>

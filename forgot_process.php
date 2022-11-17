@@ -26,9 +26,11 @@ if(isset($_POST['username']) && isset($_POST['question']) && isset($_POST['repon
         if ($isAnswerCorrect) 
     {
         //Si oui on stocke les données de session et on renvoie vers la page forgot_password2
+            $_SESSION['id_user'] = $data['id_user'];
             $_SESSION['user'] = $data['username'];
             $_SESSION['lastname']= $data['nom'];
             $_SESSION['firstname']= $data['prenom'];
+            
             header('Location: forgot_password2.php'); 
 
     }else header('Location: forgot_password.php?forgot_err=wrong_answer');

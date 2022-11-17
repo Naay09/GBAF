@@ -1,7 +1,6 @@
 <?php
 //session_start();
 require ('includes/db-connection.php');
-ini_set('display_errors', 1); ini_set('error_reporting', E_ALL);
 
 $id_user=$_GET['id_user'];
 $id_actor=$_GET['id_actor'];
@@ -27,13 +26,14 @@ $vote=$_GET['vote'];
             'id_acteur' => $id_actor,
             'vote' => $vote
         ));
+
           // On compte le nb de likes/dislikes
           $sqlQuery = 'SELECT COUNT(*) AS nb_vote FROM vote WHERE id_acteur = ? AND vote = ?';
           $newVoteQuery = $dbConnection->prepare($sqlQuery);
           $newVoteQuery->execute(array($id_actor, $vote));
           $newVote = $newVoteQuery->fetch();
 
-
+          
         $response['status']='ok';
         $response['vote']=$newVote;
    }else {

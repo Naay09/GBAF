@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+
 require ('includes/db-connection.php');
 
     // On vérifie que le champ $_POST['password'] est présent
@@ -19,7 +21,7 @@ require ('includes/db-connection.php');
                     'username'=>$_SESSION['user']
                 ));
 
-                header('Location: login.php');
+                header('Location: index.php');
 
 
     }else header('Location: forgot_password.php');
